@@ -1,0 +1,17 @@
+{
+  "name": "servico-de-pagamento",
+  "version": "1.0.0",
+  "description": "Serviço de pagamento com consulta do último pagamento realizado",
+  "main": "src/ServicoDePagamento.js",
+  "scripts": {
+    "test": "mocha test/**/*.test.js"
+  },
+  "keywords": [
+    "pagamento",
+    "nodejs"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^11.1.0"
+  }
+}
