@@ -2,7 +2,7 @@
 
 Projeto desenvolvido em outra disciplina da pos-graduacao, estendido com uma **pipeline de integracao continua (CI)** utilizando **GitHub Actions**. A aplicacao implementa um servico de pagamentos com testes automatizados executados a cada alteracao no repositorio.
 
-**Repositorio:** https://github.com/YarleiCruz98/servico-de-pagamento
+**Repositorio:** [https://github.com/YarleiCruz98/servico-de-pagamento](https://github.com/YarleiCruz98/servico-de-pagamento)
 
 ---
 
@@ -10,17 +10,23 @@ Projeto desenvolvido em outra disciplina da pos-graduacao, estendido com uma **p
 
 A classe `ServicoDePagamento` gerencia pagamentos de contas com codigo de barras. Cada pagamento possui:
 
-| Propriedade     | Descricao                                      |
-| --------------- | ---------------------------------------------- |
-| `codigoBarras`  | Codigo de barras da conta                      |
-| `empresa`       | Nome da empresa emissora                       |
-| `valor`         | Valor pago                                     |
-| `categoria`     | `'cara'` se valor > 100, `'padrao'` caso contrario |
+
+| Propriedade    | Descricao                                          |
+| -------------- | -------------------------------------------------- |
+| `codigoBarras` | Codigo de barras da conta                          |
+| `empresa`      | Nome da empresa emissora                           |
+| `valor`        | Valor pago                                         |
+| `categoria`    | `'cara'` se valor > 100, `'padrao'` caso contrario |
+
+
+
 
 ### Metodos
 
-- **`pagar(codigoBarras, empresa, valor)`** - registra um novo pagamento na lista interna.
-- **`consultarUltimoPagamento()`** - retorna o ultimo pagamento realizado ou `null` se nao houver registros.
+- `pagar(codigoBarras, empresa, valor)` - registra um novo pagamento na lista interna.
+- `consultarUltimoPagamento()` - retorna o ultimo pagamento realizado ou `null` se nao houver registros.
+
+
 
 ### Exemplo de uso
 
@@ -41,6 +47,8 @@ console.log(servico.consultarUltimoPagamento());
 
 ---
 
+
+
 ## Estrutura do repositorio
 
 ```
@@ -60,7 +68,11 @@ servico-de-pagamento/
 
 ---
 
+
+
 ## Conceitos de Integracao Continua
+
+
 
 ### O que e CI (Continuous Integration)?
 
@@ -83,15 +95,19 @@ Sequencia automatizada de etapas (steps) que compoem um job. Neste projeto, a pi
 
 ---
 
+
+
 ## Pipeline - gatilhos (triggers)
 
 A pipeline e acionada de **tres formas distintas**, conforme exigido:
+
 
 | Gatilho      | Evento YAML         | Quando executa                                       |
 | ------------ | ------------------- | ---------------------------------------------------- |
 | **Push**     | `push`              | A cada commit enviado as branches `main` ou `master` |
 | **Manual**   | `workflow_dispatch` | Disparo sob demanda pela interface do GitHub Actions |
-| **Agendada** | `schedule`          | Toda segunda-feira as 06:00 UTC (03:00 BRT)        |
+| **Agendada** | `schedule`          | Toda segunda-feira as 06:00 UTC (03:00 BRT)          |
+
 
 Alem disso, a pipeline tambem roda em **pull requests** para validar alteracoes antes do merge.
 
@@ -103,15 +119,21 @@ Alem disso, a pipeline tambem roda em **pull requests** para validar alteracoes 
 
 ---
 
+
+
 ## Relatorios de testes
 
 Os testes utilizam **Mocha** com **Node Assert**. Na CI, tres formatos de saida sao gerados:
 
+
 | Arquivo              | Formato   | Uso                                                 |
 | -------------------- | --------- | --------------------------------------------------- |
-| `reports/junit.xml`  | JUnit XML | Publicacao no GitHub Checks via dorny/test-reporter   |
+| `reports/junit.xml`  | JUnit XML | Publicacao no GitHub Checks via dorny/test-reporter |
 | `reports/index.html` | HTML      | Relatorio visual (Mochawesome)                      |
 | `reports/index.json` | JSON      | Dados estruturados para integracoes                 |
+
+
+
 
 ### Onde encontrar os relatorios
 
@@ -121,12 +143,18 @@ Os testes utilizam **Mocha** com **Node Assert**. Na CI, tres formatos de saida 
 
 ---
 
+
+
 ## Executar localmente
+
+
 
 ### Pre-requisitos
 
 - Node.js 18 ou superior
 - npm
+
+
 
 ### Instalacao e testes
 
@@ -142,7 +170,10 @@ Apos `npm run test:ci`, abra `reports/index.html` no navegador para visualizar o
 
 ---
 
+
+
 ## Ferramentas utilizadas
+
 
 | Ferramenta               | Papel na solucao                           |
 | ------------------------ | ------------------------------------------ |
@@ -155,23 +186,4 @@ Apos `npm run test:ci`, abra `reports/index.html` no navegador para visualizar o
 | **dorny/test-reporter**  | Publicacao de resultados nos GitHub Checks |
 | **upload-artifact**      | Armazenamento dos relatorios na pipeline   |
 
----
 
-## Evidencia de execucao bem-sucedida
-
-Para comprovar o funcionamento da pipeline:
-
-1. Acesse **Actions** e o workflow **CI - Testes Automatizados**
-2. Selecione uma execucao com status verde
-3. Capture screenshot mostrando:
-   - Status de sucesso do job
-   - Etapa *Publicar relatorio de testes no GitHub* concluida
-   - Artifact `relatorio-testes-run-*` disponivel para download
-
-**URL das execucoes:** https://github.com/YarleiCruz98/servico-de-pagamento/actions
-
----
-
-## Licenca
-
-MIT
