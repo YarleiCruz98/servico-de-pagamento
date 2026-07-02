@@ -4,7 +4,8 @@
   "description": "Serviço de pagamento com consulta do último pagamento realizado",
   "main": "src/ServicoDePagamento.js",
   "scripts": {
-    "test": "mocha test/**/*.test.js"
+    "test": "mocha test/**/*.test.js",
+    "test:ci": "node scripts/test-ci.js"
   },
   "keywords": [
     "pagamento",
@@ -12,6 +13,8 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "mocha": "^11.1.0"
+    "mocha": "^11.1.0",
+    "mocha-junit-reporter": "^2.2.1",
+    "mochawesome": "^7.1.3"
   }
 }
